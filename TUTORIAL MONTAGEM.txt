@@ -1,0 +1,61 @@
+TUTORIAL DE MONTAGEM DO ROBÔ OTTO DIY - A NOSSA EXPERIÊNCIA
+
+Bem-vindo ao tutorial de montagem do OTTO DIY. Este guia foi criado com base em todos os acertos e, principalmente, nos "perrengues" que enfrentamos durante o nosso projeto na UNEB. Siga os passos abaixo para evitar os mesmos erros.
+
+1. PREPARAÇÃO E AVISOS IMPORTANTES
+* Antes de começar, verifique qual manual se alinha corretamente ao seu kit de peças[cite: 4]. Existiam duas opções de manual e começamos pelo errado, o que atrasou tudo[cite: 5].
+* Escolha uma bancada adequada e espaçosa. Nós usamos mesas de aulas comuns e perdemos vários parafusos pequenos que caíram no chão e tinham a mesma cor do piso[cite: 5].
+* Separe as peças, os servomotores SG90, os parafusos e a carcaça impressa em 3D.
+
+2. MONTANDO O CHASSI E AS PERNAS
+* Pegue a base do robô e coloque os dois motores das pernas nas posições sinalizadas[cite: 5]. 
+* Parafuse-os firmemente para garantir que não fiquem bambos[cite: 5].
+* Em seguida, pegue as peças chamadas de "braços" e conecte-as aos motores das pernas usando os parafusos pequenos[cite: 5]. É normal sentir uma certa rigidez ao encaixar essas peças[cite: 5].
+
+3. MONTANDO OS PÉS
+* Encaixe os "braços" nos pés do robô[cite: 10].
+* Coloque os motores correspondentes nos pés e conecte-os às pernas[cite: 11]. Se estiverem bem alocados e firmes, a orientação é que não há sequer necessidade de parafusar essa parte específica[cite: 11].
+* Dica da nossa equipe: verifique se o parafuso que fixa a perna esquerda no chassi está firme, pois o nosso apresentou defeito e precisou ser trocado[cite: 14].
+
+4. O "CÉREBRO" E OS "OLHOS" (A CABEÇA)
+* Pegue a cabeça do robô e posicione os "olhos", que são o sensor ultrassônico (HC-SR04)[cite: 11]. 
+* Conecte 4 fios (jumpers) em cada uma das entradas do sensor[cite: 11].
+* Pegue a placa principal (Shield de expansão) e conecte o Arduino Nano na posição indicada no manual[cite: 11].
+
+5. AS LIGAÇÕES ELÉTRICAS (O MAPA DO SUCESSO)
+Se errar aqui, o robô não funciona. Preste atenção nas portas exatas que usamos e deram certo:
+* Servomotor do Pé Direito: GVS-5[cite: 14].
+* Servomotor do Pé Esquerdo: GVS-4[cite: 14].
+* Servomotor da Perna Direita: GVS-3[cite: 14].
+* Servomotor da Perna Esquerda: GVS-2[cite: 14].
+* Sensor Ultrassônico Trig: Porta 8-S[cite: 14].
+* Sensor Ultrassônico Echo: Porta 9-S[cite: 14].
+* Sensor Ultrassônico VCC: 9-V[cite: 14].
+* Sensor Ultrassônico GND: 8-G[cite: 14].
+* Buzzer Positivo (+): Porta 13-S[cite: 14].
+* Buzzer Negativo (-): Porta 13-G[cite: 14].
+* Regulador de Tensão (+): 5V[cite: 14].
+* Regulador de Tensão (-): GND[cite: 14].
+* Capacitores: Portas 15-V / 15-G e 1-V / 1-G[cite: 14].
+
+Dica de Ouro: Passe os cabos por dentro das pernas! Nós esquecemos de passar um cabo por dentro de uma perna e tivemos problemas depois[cite: 14]. Use fita isolante para fixar os cabos e evitar que se soltem durante o movimento[cite: 21].
+
+6. O DESAFIO DO FECHAMENTO
+* Na hora de colocar o botão de ligar/desligar, verifique o tamanho da peça impressa. No nosso caso, o botão era quase o dobro do tamanho do buraco, impossibilitando o encaixe[cite: 12].
+* Se isso acontecer, você terá que adaptar ou manter o robô parcialmente aberto durante os primeiros testes[cite: 13].
+
+7. PROGRAMAÇÃO E CALIBRAÇÃO 
+* Baixe o software Arduino IDE 2 e a biblioteca do Otto DIY[cite: 14].
+* Antes de fechar o robô definitivamente, carregue o código "Otto_Calibration" no Arduino Nano[cite: 4, 21]. Isso vai ajustar eletronicamente os servomotores para 90 graus, alinhando as pernas e os pés perfeitamente[cite: 5, 21]. Os valores ficarão salvos na memória EEPROM[cite: 21].
+* Atenção: Durante a nossa calibração, a perna esquerda se recusou a mexer, o que nos forçou a desmontar e remontar o robô inteiro do zero para testar os motores individualmente[cite: 20]. Se um servo travar, teste as conexões novamente.
+* Erros no software? Se a porta USB der como "desplugada" ou o programa travar, feche e abra o IDE ou, em último caso, troque de computador. Isso salvou nosso projeto[cite: 21].
+
+8. IMPLEMENTANDO A LÓGICA DE MOVIMENTO
+Depois de calibrado, você pode subir os códigos definitivos que geramos:
+* Código de Dança: O robô executa a função sincronizada para concentrar o equilíbrio e levantar a perna esquerda, além de passos laterais e agachamentos coordenados.
+* Código da Trena: O robô usa passos padronizados para caminhar em linha reta até que o sensor detecte uma parede ou objeto a 10 cm de distância[cite: 28, 29]. Ele para, calcula e sinaliza a distância do ponto A ao B.
+* Código da Corrida com Obstáculos: Lógica de sobrevivência. Quando ele anda e detecta um obstáculo na frente, a programação correta é fazê-lo ir para trás (recuar) primeiro e só depois rotacionar para desviar, evitando colisões e travamentos mecânicos na manobra.
+
+9. TESTE FINAL
+* Feche o robô, conecte a bateria e ligue-o[cite: 20].
+* Abra o aplicativo Bluetooth no celular e teste os comandos direcionais[cite: 20]. Se tudo responder de imediato, a sua montagem foi um sucesso[cite: 20].
